@@ -1,0 +1,64 @@
+<div ng-controller="CreateQuestionController as CQCtrl">
+    <div class="content">
+        <form name="questionForm" ng-submit="CQCtrl.saveQuestion(questionForm)">
+            <md-card md-theme="default" md-theme-watch class="question-block">
+                <md-card-title>
+                    <md-card-title-text>
+                        <md-input-container>
+                            <label>Вопрос</label>
+                            <input ng-model="CQCtrl.question.text" type="text" md-maxlength="255" required>
+                        </md-input-container>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+
+                    <!--<text-angular ng-model="question.subText"></text-angular>-->
+
+                    <md-input-container style="min-width:100%;">
+                        <label>Дполнительная информация</label>
+                        <textarea ng-model="CQCtrl.question.additional_text"
+                                  md-maxlength="1000" rows="4" md-select-on-focus></textarea>
+                    </md-input-container>
+                    <br>
+
+                    <md-input-container style="min-width:400px;">
+                        <label>Ссылка на код</label>
+                        <input ng-model="CQCtrl.question.code" type="link" md-maxlength="255">
+                    </md-input-container>
+
+                    <md-input-container style="margin-left: 30px;margin-top: 0px;">
+                        <label>Уровень</label>
+                        <md-select ng-model="CQCtrl.question.lvl" required>
+                            <md-option value="1">Junior</md-option>
+                            <md-option value="2">Middle</md-option>
+                            <md-option value="3">Senior</md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <br>
+
+                    <md-input-container class="tags-string-input">
+                        <label>Теги (через запятую)</label>
+                        <input ng-model="CQCtrl.tagsString" ng-change="CQCtrl.parseTags()" type="text"
+                               md-maxlength="255">
+                    </md-input-container>
+
+                    <div class="hashtags creating-question">
+                        <div ng-repeat="(indexTag, tag) in CQCtrl.question.tags" class="tag-container"
+                             ng-if="tag">
+                            <md-button>{{::tag}}</md-button>
+                            <i class="fa fa-trash delete-tag" aria-hidden="true"
+                               ng-click="CQCtrl.deleteTag(indexTag)"></i>
+                        </div>
+
+                    </div>
+                </md-card-content>
+
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button class="md-raised md-primary" ng-click="CQCtrl.saveQuestion(questionForm)">Сохранить
+                    </md-button>
+                </md-card-actions>
+            </md-card>
+        </form>
+    </div>
+</div>

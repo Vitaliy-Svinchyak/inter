@@ -1,0 +1,18 @@
+<md-card-content class="auth-box" ng-controller="AuthController as authCtrl">
+    <form name="authForm" ng-submit="authCtrl.login(authForm)">
+        <div layout="row">
+            <md-input-container class="search-input">
+                <label>Email</label>
+                <input ng-model="authCtrl.email" type="email">
+            </md-input-container>
+
+            <md-input-container class="search-input">
+                <label>Пароль</label>
+                <input ng-model="authCtrl.password" type="password" autofocus>
+            </md-input-container>
+
+            <md-button class="md-raised md-primary" type="submit">Войти</md-button>
+        </div>
+    </form>
+</md-card-content>
+<a href="/#/ask-for-account" class="ask-for-account">Запросить доступ</a>

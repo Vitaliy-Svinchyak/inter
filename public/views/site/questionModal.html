@@ -1,0 +1,110 @@
+<md-dialog class="question-modal-dialog">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{::question.text}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()" aria-label="cancel">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content style="padding: 20px;">
+        <md-card md-theme="default" md-theme-watch
+                 ng-repeat="(answerNumber, answer) in question.answers">
+            <md-card-header>
+                <md-card-avatar>
+                    <img class="md-user-avatar" ng-src="{{::answer.user.avatar}}"/>
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span class="md-title">{{::answer.user.name}}</span>
+                    <span class="md-subhead">{{::answer.user.profession}}</span>
+                </md-card-header-text>
+                <md-card-actions layout="row" layout-align="end center" class="plus-question">
+                    <md-button ng-if="answer.can_plus" ng-click="plus(answer.id)">
+                        <md-tooltip md-direction="top" md-delay="500" class="md-icon-button">
+                            Повысить рейтинг
+                        </md-tooltip>
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </md-button>
+                    <md-button ng-if="answer.can_plus" ng-click="minus(answer.id)">
+                        <md-tooltip md-direction="top" md-delay="500" class="md-icon-button">
+                            Понизить рейтинг
+                        </md-tooltip>
+                        <i class="fa fa-minus" aria-hidden="true"></i>
+                    </md-button>
+                    <md-button class="md-icon-button rating-button" aria-label="Favorite"
+                               ng-if="!answer.can_plus">
+                        {{answer.rating}}
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                    </md-button>
+                </md-card-actions>
+            </md-card-header>
+
+            <md-card-content>
+                <p>
+                    {{::answer.text}}
+                </p>
+            </md-card-content>
+            <span class="date">{{::answer.updated_at}}</span>
+        </md-card>
+        <md-card md-theme="default" md-theme-watch
+                 ng-if="showAnswerForm">
+            <md-card-header>
+                <md-card-avatar>
+                    <img class="md-user-avatar" ng-src="{{currentUser.avatar}}"/>
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span class="md-title">{{::currentUser.name}}</span>
+                    <span class="md-subhead">{{::currentUser.profession}}</span>
+                </md-card-header-text>
+                <md-card-actions layout="row" layout-align="end center" class="plus-question">
+
+                </md-card-actions>
+            </md-card-header>
+            <form name="answerForm" ng-submit="sendAnswer(answerForm)">
+                <md-card-content>
+
+                    <md-input-container style="min-width:100%;">
+                        <label>Ответ</label>
+                        <textarea ng-model="answerObject.text" autofocus
+                                  md-maxlength="5000" rows="6" required></textarea>
+                    </md-input-container>
+
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button ng-click="sendAnswer(answerForm)" class="md-raised md-primary">
+                        Отправить
+                    </md-button>
+                </md-card-actions>
+            </form>
+        </md-card>
+
+        <!--<md-divider class="divider-before-comments"></md-divider>-->
+
+        <!--<md-card md-theme="default" md-theme-watch class="question-comments">-->
+        <!--<md-card-header>-->
+        <!--<md-card-header-text>-->
+        <!--<span class="md-title">Комментарии</span>-->
+        <!--</md-card-header-text>-->
+        <!--</md-card-header>-->
+
+        <!--<md-card-content>-->
+        <!--<comment ng-repeat="comment in question.comments" comment="comment"></comment>-->
+        <!--</md-card-content>-->
+        <!--</md-card>-->
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <!--<md-button class="md-icon-button rating-button" aria-label="Favorite"-->
+        <!--ng-click="showComments()">-->
+        <!--<md-tooltip md-direction="top" md-delay="500">-->
+        <!--Комментарии-->
+        <!--</md-tooltip>-->
+        <!--{{question.commentsCount}} <i class="fa fa-comments-o" aria-hidden="true"></i>-->
+        <!--</md-button>-->
+        <md-button ng-if="!showAnswerForm" ng-click="answer()" class="ng-raised ng-primary">
+            Ответить
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

@@ -1,0 +1,37 @@
+<comment-block>
+    <comment-user-avatar>
+        <img class="md-user-avatar" ng-src="{{::$ctrl.comment.user.avatar}}"/>
+    </comment-user-avatar>
+    <comment-header-text>
+        <span class="md-title">
+            {{::$ctrl.comment.user.name}}
+        </span>
+        <span class="md-subhead">
+            {{::$ctrl.comment.user.profession}}
+        </span>
+    </comment-header-text>
+    <comment-text>
+        {{::$ctrl.comment.text}}
+    </comment-text>
+    <comment-actions>
+        <md-button ng-if="!$ctrl.comment.plussed" class="text-button">
+            Ответить
+        </md-button>
+        <md-button ng-if="!$ctrl.comment.plussed" class="md-icon-button">
+            <md-tooltip md-direction="top" md-delay="500">
+                Повысить рейтинг
+            </md-tooltip>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </md-button>
+        <md-button ng-if="!$ctrl.comment.plussed" class="md-icon-button">
+            <md-tooltip md-direction="top" md-delay="500">
+                Понизить рейтинг
+            </md-tooltip>
+            <i class="fa fa-minus" aria-hidden="true"></i>
+        </md-button>
+    </comment-actions>
+    <div class="sub-comments" ng-if="$ctrl.comment.subComments.length">
+        <comment ng-repeat="subcomment in $ctrl.comment.subComments" comment="subcomment"></comment>
+    </div>
+
+</comment-block>

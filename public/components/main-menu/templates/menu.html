@@ -1,0 +1,45 @@
+<div >
+    <md-toolbar class="header-toolbar header-fixed">
+        <md-button aria-label="menu" ng-click="$ctrl.openMenu()" class="md-icon-button">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </md-button>
+
+        <input ng-model="searchWord" type="search" placeholder="Поиск..." class="toolbar-search">
+
+        <md-button aria-label="menu" ng-click="null" class="md-icon-button" ng-if="$ctrl.isHome">
+            <a href="/#/my/page" id="my-page" ng-click="$ctrl.goMyPage()">
+                <i class="fa fa-user" aria-hidden="true"></i>
+            </a>
+
+        </md-button>
+
+        <md-button aria-label="menu" ng-click="null" class="md-icon-button"  ng-if="$ctrl.isMyPage">
+            <a href="/#/" id="my-page" ng-click="$ctrl.goHomeNigger()">
+                <i class="fa fa-home" aria-hidden="true"></i>
+            </a>
+
+        </md-button>
+
+    </md-toolbar>
+
+
+    <md-sidenav class="md-sidenav-left md-whiteframe-4dp" md-component-id="left">
+
+        <md-toolbar class="md-theme-light">
+            <h1 class="md-toolbar-tools">Меню</h1>
+        </md-toolbar>
+        <md-content layout-padding>
+            <md-list flex>
+                <md-list-item class="md-1-line" ng-click="$ctrl.go(item.url)" ng-repeat="item in $ctrl.menuItems">
+                    <img ng-if="item.icon" ng-src="{{::item.icon}}" class="md-avatar" alt="{{::item.alt}}"/>
+                    <div class="md-list-item-text" layout="column">
+                        <a class="clear-a" href="{{::item.url}}">
+                            <h3>{{::item.text}}</h3>
+                        </a>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </md-content>
+
+    </md-sidenav>
+</div>
