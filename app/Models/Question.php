@@ -31,7 +31,11 @@ class Question extends SaveModel
     public function rules()
     {
         return [
-
+            'user_id' => 'required|Integer|exists:users,id',
+            'text' => 'required|string|max:255|min:5',
+            'additional_text' => 'string|max:255',
+            'lvl' => 'required|Integer|in:0,1,2',
+            'rating' => 'required|Integer',
         ];
     }
 
@@ -60,6 +64,9 @@ class Question extends SaveModel
         return $this->hasMany(Answer::class, 'question_id', 'id')->orderBy('rating', 'DESC');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function hashtags()
     {
         return $this->belongsToMany(Hashtag::class, 'hashtags_to_questions', 'question_id', 'hashtag_id');

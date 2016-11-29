@@ -31,7 +31,7 @@ class QuestionController extends Controller
             ->orderBy('q.created_at')
             ->offset($offset)
             ->pluck('q.id');
-        
+
         $questions = Question::with([
             'user',
             'answers.user',
@@ -58,7 +58,16 @@ class QuestionController extends Controller
             'additional_text' => $data['additional_text'],
             'lvl' => $data['lvl'],
         ]);
-        $question->save();
-        TagsCreator::createTags($data['tags'], $question->id);
+        $result = $question->save();
+        if ($result) {
+            TagsCreator::addTagsToQuestion($data['tags'], $question->id);
+            return response('');
+        }
+
+        $errors = [
+            'errors' => $question->getErrors()->toArray()
+        ];
+        return response(json_encode($errors), 406);
+
     }
 }

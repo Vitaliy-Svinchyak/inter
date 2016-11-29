@@ -47,7 +47,7 @@ class SaveModel extends Model
             } else {
                 $result = true;
             }
-
+            
             if ($result) {
                 $this->fireModelEvent('validated');
                 return true;

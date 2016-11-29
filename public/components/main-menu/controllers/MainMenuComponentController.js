@@ -3,6 +3,11 @@
  */
 class MainMenuComponentController {
 
+    /**
+     *
+     * @param $mdSidenav
+     * @param $location
+     */
     constructor($mdSidenav, $location) {
         this.$mdSidenav = $mdSidenav;
         this.$location = $location;
@@ -51,15 +56,23 @@ class MainMenuComponentController {
         this.detectPage();
     }
 
+
     openMenu() {
         this.$mdSidenav('left').toggle();
     }
 
+    /**
+     * Goes to the url and closes menu
+     * @param to
+     */
     go(to) {
         this.$location.url(to);
         this.$mdSidenav('left').toggle();
     }
 
+    /**
+     * Detects pages and changes menu items
+     */
     detectPage() {
         let path = this.$location.path();
         if (path.substr(0, 4) === '/my/'){
@@ -96,11 +109,7 @@ class MainMenuComponentController {
 const MainMenuDefinition = {
     templateUrl: '/components/main-menu/templates/menu.html',
 
-    // тут примерно так же как и в случае с директивами
-    // единственное что `controllerAs` используется всегда
-    // в случае если вы явно не прописали элиас для контроллера
-    // будет использовано значение `$ctrl`.
     controller: MainMenuComponentController
-}
+};
 
 angular.module('app').component('mainMenu', MainMenuDefinition);

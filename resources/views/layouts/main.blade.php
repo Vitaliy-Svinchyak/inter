@@ -43,14 +43,15 @@
 
 
     <script src="{{ asset('/js/app.js') }}"></script>
-    <script src="{{ asset('/controllers/main.js') }}"></script>
+    <script src="{{ asset('/config/routes.js') }}"></script>
+    <script src="{{ asset('/bootstrap/main.js') }}"></script>
     <script src="{{ asset('/controllers/IndexController.js') }}"></script>
     <script src="{{ asset('/controllers/AuthController.js') }}"></script>
     <script src="{{ asset('/controllers/RegistrationController.js') }}"></script>
     <script src="{{ asset('/controllers/MyPageController.js') }}"></script>
     <script src="{{ asset('/controllers/CreateQuestionController.js') }}"></script>
     <script src="{{ asset('/controllers/MyMenuController.js') }}"></script>
-    {{--<script src="{{ asset('/controllers/QuestionModalController.js') }}"></script>--}}
+    <script src="{{ asset('/controllers/QuestionModalController.js') }}"></script>
     <script src="{{ asset('/components/comment/controllers/CommentComponentController.js') }}"></script>
     <script src="{{ asset('/components/question/controllers/QuestionComponentController.js') }}"></script>
     <script src="{{ asset('/components/main-menu/controllers/MainMenuComponentController.js') }}"></script>
@@ -58,5 +59,6 @@
     <script src="{{ asset('/services/QuestionService.js') }}"></script>
     <script src="{{ asset('/services/AnswerRatingService.js') }}"></script>
     <script src="{{ asset('/services/AnswerService.js') }}"></script>
+    <script src="{{ asset('/services/Logger.js') }}"></script>
 </body>
 </html>

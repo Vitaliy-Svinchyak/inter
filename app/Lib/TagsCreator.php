@@ -14,11 +14,11 @@ use App\Models\HashtagToQuestion;
 class TagsCreator
 {
 
-    public static function createTags(array $tags, int $questionId)
+    public static function addTagsToQuestion(array $tags, int $questionId)
     {
         foreach ($tags as $tag) {
             $tagDb = Hashtag::firstOrCreate(['text' => $tag]);
-            HashtagToQuestion::firstOrCreate(['question_id' => $questionId, 'hashtag_id' => $tagDb->id]);
+            (HashtagToQuestion::firstOrCreate(['question_id' => $questionId, 'hashtag_id' => $tagDb->id]));
         }
     }
 }

@@ -5,48 +5,60 @@
 ;(function () {
     'use strict';
 
-    class QuestionModalController {
+    angular.module('app').controller('QuestionModalController', ['$scope', '$mdDialog',
+        'UserModel', 'question', 'AnswerRatingService', 'AnswerService',
+        function ($scope, $mdDialog, User, question, AnswerRatingService, AnswerService) {
+            $scope.question = question;
+            $scope.commentsOpened = false;
+            $scope.showAnswerForm = false;
+            $scope.answerObject = {};
 
-        constructor($mdDialog, User, question) {
-            this.$mdDialog = $mdDialog;
-            this.User = User;
-            this.question = question;
 
-            this.commentsOpened = false;
-            this.showAnswerForm = false;
-            this.answerText = '';
-        }
+            $scope.currentUser = User.getData();
 
-        hide() {
-            this.$mdDialog.hide();
-        };
+            $scope.hide = () => $mdDialog.hide();
 
-        cancel() {
-            this.$mdDialog.cancel();
-        };
+            $scope.cancel = () => $mdDialog.cancel();
 
-        close() {
-            this.$mdDialog.hide();
-        };
+            $scope.close = () => $mdDialog.hide();
 
-        answer() {
-            this.showAnswerForm = true;
-        };
+            $scope.answer = () => $scope.showAnswerForm = true;
 
-        showComments() {
-            this.commentsOpened = true;
-        };
+            $scope.showComments = () => $scope.commentsOpened = true;
 
-        // plus(answerId) {
-        //     AnswerRatingService.create('+', answerId);
-        // }
-        //
-        // minus(answerId) {
-        //     AnswerRatingService.create('-', answerId);
-        // }
-    }
+            $scope.plus = function plus(answerId) {
+                AnswerRatingService.create('+', answerId)
+                    .success(data => {
+                        $scope.question.answers.forEach((answer) => {
+                            if (answer.id === answerId) {
+                                answer.can_plus = false;
+                                answer.rating = data.newRating;
+                            }
+                        })
+                    });
+            };
 
-    angular.module('app').controller('QuestionModalController', ['$mdDialog',
-        'UserModel', 'question',
-        QuestionModalController]);
+            $scope.minus = function minus(answerId) {
+                AnswerRatingService.create('-', answerId)
+                    .success(data => {
+                        $scope.question.answers.forEach((answer) => {
+                            if (answer.id === answerId) {
+                                answer.can_plus = false;
+                                answer.rating = data.newRating;
+                            }
+                        })
+                    });
+            };
+
+            $scope.sendAnswer = function (answerForm) {
+                if (answerForm.$valid) {
+                    AnswerService.create($scope.answerObject, $scope.question.id)
+                        .success(data => {
+                            $scope.answerObject = {};
+                            $scope.showAnswerForm = false;
+                            $scope.question.answers.push(data.answer);
+                        });
+                }
+            };
+        }])
 })();
