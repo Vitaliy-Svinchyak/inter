@@ -11,6 +11,8 @@ use App\Observers\AnswerObserver;
 use App\Models\Answer;
 use App\Observers\QuestionObserver;
 use App\Models\Question;
+use App\Observers\QuestionRatingObserver;
+use App\Models\QuestionRatingLog;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         AnswerRatingLog::observe(AnswerRatingObserver::class);
+        QuestionRatingLog::observe(QuestionRatingObserver::class);
         Answer::observe(AnswerObserver::class);
         Question::observe(QuestionObserver::class);
     }

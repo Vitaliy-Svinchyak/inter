@@ -15,10 +15,12 @@ class AnswerObserver
 {
     public function validating(Answer $answer)
     {
-        $answer->text = strip_tags($answer->text, ['ul', 'ol', 'li', 'strong', 'p']);
-        $answer->rating = 0;
-        $answer->user_id = Auth::id();
-        $answer->code = '';
+        if (!$answer->exists) {
+            $answer->text = strip_tags($answer->text, ['ul', 'ol', 'li', 'strong', 'p']);
+            $answer->rating = 0;
+            $answer->user_id = Auth::id();
+            $answer->code = '';
+        }
         return true;
     }
 }

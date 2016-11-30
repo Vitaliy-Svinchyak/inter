@@ -16,9 +16,11 @@ class QuestionObserver
 
     public function validating(Question $question)
     {
-        $question->user_id = Auth::id();
-        $question->code = '';
-        $question->rating = 0;
+        if(!$question->exists) {
+            $question->user_id = Auth::id();
+            $question->code = '';
+            $question->rating = 0;
+        }
         return true;
     }
 }

@@ -519,9 +519,14 @@ md-card md-card-title md-card-title-text:only-child .md-subhead {
     color: rgba(0, 0, 0, 0.54);
 }
 
-span.date {
+span.right-down {
     font-size: 0.8em;
     color: rgba(0, 0, 0, 0.54);
     align-self: flex-end;
     margin: 8px;
+}
+
+span.right-down > span {
+    padding: 2px;
+    margin-left: 5px;
 }

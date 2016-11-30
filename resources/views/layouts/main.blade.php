@@ -50,6 +50,7 @@
 <script src="{{ asset('/models/User.js') }}"></script>
 <script src="{{ asset('/services/QuestionService.js') }}"></script>
 <script src="{{ asset('/services/AnswerRatingService.js') }}"></script>
+<script src="{{ asset('/services/QuestionRatingService.js') }}"></script>
 <script src="{{ asset('/services/AnswerService.js') }}"></script>
 <script src="{{ asset('/services/Logger.js') }}"></script>
 </body>

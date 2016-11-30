@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\Models;
 
 use App\Essence\SaveModel;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class User
@@ -15,7 +16,7 @@ class Question extends SaveModel
 
     protected $table = 'questions';
 
-    protected $appends = ['bestAnswer'];
+    protected $appends = ['best_answer', 'can_plus'];
     /**
      * The attributes that are mass assignable.
      *
@@ -70,5 +71,25 @@ class Question extends SaveModel
     public function hashtags()
     {
         return $this->belongsToMany(Hashtag::class, 'hashtags_to_questions', 'question_id', 'hashtag_id');
+    }
+
+    /**
+     * Checks if it is not an answer of current user or if he didn't plussed it
+     * @return bool
+     */
+    public function getCanPlusAttribute()
+    {
+        if ($this->user_id === Auth::id()) {
+            return false;
+        }
+
+        $existRatingLog = QuestionRatingLog::where('question_id', $this->id)
+            ->where('user_id', Auth::id())
+            ->first();
+
+        if ($existRatingLog) {
+            return false;
+        }
+        return true;
     }
 }

@@ -17,13 +17,15 @@ class AnswerRatingObserver
 {
     public function validating(AnswerRatingLog $model)
     {
-        $model->user_id = Auth::id();
-        $existRatingLog = AnswerRatingLog::where('user_id', $model->user_id)
-            ->where('answer_id', $model->answer_id)
-            ->first();
+        if (!$model->exists) {
+            $model->user_id = Auth::id();
+            $existRatingLog = AnswerRatingLog::where('user_id', $model->user_id)
+                ->where('answer_id', $model->answer_id)
+                ->first();
 
-        if ($existRatingLog) {
-            return false;
+            if ($existRatingLog) {
+                return false;
+            }
         }
         return true;
     }

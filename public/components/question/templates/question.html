@@ -1,23 +1,23 @@
-<md-card md-theme="default" md-theme-watch class="question-block" >
+<md-card md-theme="default" md-theme-watch class="question-block">
     <md-card-title>
         <md-card-title-text>
             <div class="md-headline">
                 {{::$ctrl.question.text}}
                 <md-card-actions layout="row" layout-align="end center" class="plus-question">
-                    <md-button ng-if="!question.plussed">
-                        <md-tooltip md-direction="top" md-delay="500">
+                    <md-button ng-if="$ctrl.question.can_plus">
+                        <md-tooltip md-direction="top" md-delay="500" ng-click="$ctrl.plus()">
                             Повысить рейтинг
                         </md-tooltip>
                         <i class="fa fa-plus" aria-hidden="true"></i>
                     </md-button>
-                    <md-button ng-if="!question.plussed">
+                    <md-button ng-if="$ctrl.question.can_plus" ng-click="$ctrl.minus()">
                         <md-tooltip md-direction="top" md-delay="500">
                             Понизить рейтинг
                         </md-tooltip>
                         <i class="fa fa-minus" aria-hidden="true"></i>
                     </md-button>
                     <md-button class="md-icon-button rating-button" aria-label="Favorite"
-                               ng-if="question.plussed">
+                               ng-if="!$ctrl.question.can_plus">
                         {{$ctrl.question.rating}}
                         <i class="fa fa-star" aria-hidden="true"></i>
                     </md-button>
@@ -34,7 +34,7 @@
     </md-card-title>
     <md-card-content ng-if="$ctrl.question.showAnswer  && $ctrl.question.bestAnswer">
         <p>
-            {{::$ctrl.question.bestAnswer.text}}
+            {{::$ctrl.question.best_answer.text}}
         </p>
     </md-card-content>
     <md-card-content ng-if="!$ctrl.question.bestAnswer">
@@ -48,5 +48,11 @@
     <md-card-actions layout="row" layout-align="start center" class="hashtags">
         <md-button ng-repeat="tag in $ctrl.question.hashtags">{{::tag.text}}</md-button>
     </md-card-actions>
-    <span class="date">{{::$ctrl.question.updated_at}}</span>
+    <span class="right-down">
+        <span class="answers">
+            {{::$ctrl.question.answers.length}}
+            <i class="fa fa-comments-o" aria-hidden="true"></i>
+        </span>
+        <span class="date">{{::$ctrl.question.updated_at}}</span>
+    </span>
 </md-card>

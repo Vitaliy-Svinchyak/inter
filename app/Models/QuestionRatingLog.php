@@ -11,10 +11,10 @@ use App\Essence\SaveModel;
  * @property mixed answer_id
  * @package App\Models
  */
-class AnswerRatingLog extends SaveModel
+class QuestionRatingLog extends SaveModel
 {
 
-    protected $table = 'answer_rating_log';
+    protected $table = 'question_rating_log';
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +22,7 @@ class AnswerRatingLog extends SaveModel
      * @var array
      */
     protected $fillable = [
-        'answer_id', 'user_id', 'type'
+        'question_id', 'user_id', 'type'
     ];
 
     /**
@@ -31,7 +31,7 @@ class AnswerRatingLog extends SaveModel
     public function rules()
     {
         return [
-            'answer_id' => 'required|Integer|exists:answers,id',
+            'question_id' => 'required|Integer|exists:questions,id',
             'user_id' => 'required|Integer|exists:users,id',
             'type' => 'required|in:+,-',
         ];

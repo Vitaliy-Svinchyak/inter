@@ -4,8 +4,9 @@
 ;(function () {
     class QuestionComponentController {
 
-        constructor($mdDialog) {
+        constructor($mdDialog, QuestionRatingService) {
             this.$mdDialog = $mdDialog;
+            this.QuestionRatingService = QuestionRatingService;
         }
 
         showShortAnswer(questionNumber) {
@@ -23,6 +24,16 @@
                 }
             });
         };
+
+        plus() {
+            this.QuestionRatingService.create('+', this.question.id)
+                .success(data => this.question.rating = data.newRating);
+        }
+
+        minus() {
+            this.QuestionRatingService.create('-', this.question.id)
+                .success(data => this.question.rating = data.newRating);
+        }
     }
 
     const QuestionComponentDefinition = {
@@ -31,7 +42,7 @@
         },
         templateUrl: '/components/question/templates/question.html',
 
-        controller: ['$mdDialog', QuestionComponentController]
+        controller: ['$mdDialog', 'QuestionRatingService', QuestionComponentController]
     }
 
     angular.module('app').component('question', QuestionComponentDefinition);

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAnswerRatingLogTable extends Migration
+class CreateQuestionAnswerLog extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateAnswerRatingLogTable extends Migration
      */
     public function up()
     {
-        Schema::create('answer_rating_log', function (Blueprint $table) {
+        Schema::create('question_rating_log', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('answer_id');
+            $table->unsignedInteger('question_id');
             $table->unsignedInteger('user_id');
             $table->enum('type', ['+', '-']);
 
-            $table->foreign('answer_id')->references('id')->on('answers');
+            $table->foreign('question_id')->references('id')->on('questions');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
@@ -32,6 +32,6 @@ class CreateAnswerRatingLogTable extends Migration
      */
     public function down()
     {
-        Schema::drop('answer_rating_log');
+        Schema::drop('question_rating_log');
     }
 }

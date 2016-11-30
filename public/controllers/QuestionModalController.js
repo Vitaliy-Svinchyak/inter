@@ -10,8 +10,11 @@
         function ($scope, $mdDialog, User, question, AnswerRatingService, AnswerService) {
             $scope.question = question;
             $scope.commentsOpened = false;
-            $scope.showAnswerForm = false;
             $scope.answerObject = {};
+            $scope.showAnswerForm = false;
+            if (!$scope.question.answers.length) {
+                $scope.showAnswerForm = true;
+            }
 
 
             $scope.currentUser = User.getData();

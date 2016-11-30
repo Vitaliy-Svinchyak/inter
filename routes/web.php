@@ -18,6 +18,8 @@ Route::resource('/question', 'QuestionController',
     ['only' => ['index', 'store']]);
 Route::resource('/answer-rating', 'AnswerRatingController',
     ['only' => 'store']);
+Route::resource('/question-rating', 'QuestionRatingController',
+    ['only' => 'store']);
 Route::resource('/answer', 'AnswerController',
     ['only' => 'store']);
 

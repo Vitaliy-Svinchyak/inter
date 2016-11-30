@@ -46,7 +46,9 @@
                     {{::answer.text}}
                 </p>
             </md-card-content>
-            <span class="date">{{::answer.updated_at}}</span>
+            <span class="right-down">
+                <span class="date">{{::answer.updated_at}}</span>
+            </span>
         </md-card>
         <md-card md-theme="default" md-theme-watch
                  ng-if="showAnswerForm">

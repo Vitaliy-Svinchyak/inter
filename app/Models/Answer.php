@@ -34,8 +34,8 @@ class Answer extends SaveModel
     public function rules()
     {
         return [
-            'user_id' => 'required|Integer',
-            'question_id' => 'required|Integer',
+            'user_id' => 'required|Integer|exists:users,id',
+            'question_id' => 'required|Integer|exists:questions,id',
             'text' => 'required|string',
             'code' => 'string',
             'rating' => 'required|Integer',
@@ -51,7 +51,7 @@ class Answer extends SaveModel
     }
 
     /**
-     * Checks if it is not an answer of current user or if he didnt plussed it
+     * Checks if it is not an answer of current user or if he didn't plussed it
      * @return bool
      */
     public function getCanPlusAttribute()
