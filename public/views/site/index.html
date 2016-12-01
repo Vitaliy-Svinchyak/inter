@@ -1,5 +1,20 @@
-
 <div class="content" ng-controller="IndexController as indexCtrl">
-    <question ng-repeat="(questionNumber, question) in indexCtrl.questions" question="question"/>
+    <div class="preloader" ng-hide="indexCtrl.dataLoaded">
+        <div class="rectangle-bounce">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+    </div>
+    <div>
+        <question ng-repeat="(questionNumber, question) in indexCtrl.questions" question="question"/>
+    </div>
 
+    <div class="load-more-container" ng-if="indexCtrl.canLoadMore">
+        <md-button aria-label="load-more" class="load-more" id="load-more" ng-click="indexCtrl.loadMore()">
+            <img src="/images/infinity.png" alt="">
+        </md-button>
+    </div>
 </div>

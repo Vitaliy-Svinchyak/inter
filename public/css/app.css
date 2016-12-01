@@ -530,3 +530,94 @@ span.right-down > span {
     padding: 2px;
     margin-left: 5px;
 }
+
+.preloader {
+    height: 80px;
+    width: 80px;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    margin-right: 40px;
+    display: inline-block;
+    position: relative;
+    -webkit-transition: all 0.3s ease-in-out 0;
+    transition: all 0.3s ease-in-out 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.rectangle-bounce {
+    text-align: center
+}
+
+.rectangle-bounce div {
+    height: 50px;
+    width: 6px;
+    background-color: #fff;
+    display: inline-block;
+    -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+    animation: stretchdelay 1.2s infinite ease-in-out;
+    background-color: #532e57;
+}
+
+.rectangle-bounce .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s
+}
+
+.rectangle-bounce .rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s
+}
+
+.rectangle-bounce .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s
+}
+
+.rectangle-bounce .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s
+}
+
+@-webkit-keyframes stretchdelay {
+    0%, 40%, 100% {
+        -webkit-transform: scaleY(0.4)
+    }
+
+    20% {
+        -webkit-transform: scaleY(1)
+    }
+}
+
+@keyframes stretchdelay {
+    0%, 40%, 100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4)
+    }
+
+    20% {
+        transform: scaleY(1);
+        -webkit-transform: scaleY(1)
+    }
+}
+
+.load-more-container {
+    text-align: center;
+}
+
+.load-more {
+    background-color: rgba(158, 158, 158, 0.2) !important;
+    text-align: center !important;;
+    line-height: 16px !important;;
+}
+
+.load-more:hover {
+    background-color: rgba(158, 158, 158, 0.3) !important;;
+}
+
+.load-more img {
+    height: 30px;
+}

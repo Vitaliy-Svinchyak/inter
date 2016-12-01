@@ -23,14 +23,19 @@ class QuestionController extends Controller
         $input = $request->all();
         $offset = ($input['page'] - 1) * 20;
         $type = $input['type'];
+        $canLoadMore = false;
         $questionIds = DB::table('questions as q')
             ->join('hashtags_to_questions as hq', 'q.id', '=', 'hq.question_id')
             ->join('hashtags as h', 'hq.hashtag_id', '=', 'h.id')
             ->where('h.text', $type)
-            ->take(20)
+            ->take(21)
             ->orderBy('q.created_at')
             ->offset($offset)
             ->pluck('q.id');
+        if ($questionIds->count() === 21) {
+            $canLoadMore = true;
+            $questionIds->pop();
+        }
 
         $questions = Question::with([
             'user',
@@ -40,7 +45,10 @@ class QuestionController extends Controller
             ->whereIn('id', $questionIds)
             ->get();
 
-        return $questions;
+        return [
+            'questions' => $questions,
+            'canLoadMore' => $canLoadMore
+        ];
     }
 
     /**

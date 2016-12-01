@@ -32,23 +32,27 @@
             <span class="md-subhead">{{::$ctrl.question.additional_text}}</span>
         </md-card-title-text>
     </md-card-title>
-    <md-card-content ng-if="$ctrl.question.showAnswer  && $ctrl.question.bestAnswer">
+    <md-card-content ng-if="$ctrl.question.showAnswer  && $ctrl.question.best_answer">
         <p>
             {{::$ctrl.question.best_answer.text}}
         </p>
     </md-card-content>
-    <md-card-content ng-if="!$ctrl.question.bestAnswer">
+    <md-card-content ng-if="!$ctrl.question.best_answer">
         <p>
             Нет ответа
         </p>
     </md-card-content>
     <a href class="show-short-answer"
        ng-click="$ctrl.showShortAnswer(questionNumber)"
-       ng-if="!$ctrl.question.showAnswer  && $ctrl.question.bestAnswer">Показать ответ</a>
+       ng-if="!$ctrl.question.showAnswer  && $ctrl.question.best_answer">Показать ответ</a>
     <md-card-actions layout="row" layout-align="start center" class="hashtags">
         <md-button ng-repeat="tag in $ctrl.question.hashtags">{{::tag.text}}</md-button>
     </md-card-actions>
     <span class="right-down">
+        <span class="author">
+            {{::$ctrl.question.user.name}}
+            <i class="fa fa-user" aria-hidden="true"></i>
+        </span>
         <span class="answers">
             {{::$ctrl.question.answers.length}}
             <i class="fa fa-comments-o" aria-hidden="true"></i>

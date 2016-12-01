@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Inter</title>
+    <title>IQA</title>
 
+    <link href="/images/main-icon.png" rel="shortcut icon">
     <link rel="stylesheet" href="{{ asset('/css/theme.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
     <link rel="stylesheet prefetch" href="{{ asset('/node_modules/angular-material/angular-material.min.css') }}">
@@ -25,34 +26,9 @@
     </div>
 </div>
 
-<script src="{{ asset('/node_modules/angular/angular.min.js') }}"></script>
-<script src="{{ asset('/node_modules/angular-animate/angular-animate.min.js') }}"></script>
-<script src="{{ asset('/node_modules/angular-cookies/angular-cookies.min.js') }}"></script>
-<script src="{{ asset('/node_modules/angular-aria/angular-aria.min.js') }}"></script>
-<script src="{{ asset('/node_modules/angular-messages/angular-messages.min.js') }}"></script>
-<script src="{{ asset('/node_modules/angular-material/angular-material.min.js') }}"></script>
-<script src="{{ asset('/node_modules/angular-ui-router/release/angular-ui-router.min.js') }}"></script>
+<script src="{{ asset('/build/angular-full.js') }}"></script>
 <script src='http://cdn.jsdelivr.net/g/angular.textangular@1.5.0(textAngular-rangy.min.js+textAngular-sanitize.min.js+textAngular.min.js)'></script>
-
-
-<script src="{{ asset('/js/app.js') }}"></script>
-<script src="{{ asset('/config/routes.js') }}"></script>
-<script src="{{ asset('/bootstrap/main.js') }}"></script>
-<script src="{{ asset('/controllers/IndexController.js') }}"></script>
-<script src="{{ asset('/controllers/AuthController.js') }}"></script>
-<script src="{{ asset('/controllers/RegistrationController.js') }}"></script>
-<script src="{{ asset('/controllers/MyPageController.js') }}"></script>
-<script src="{{ asset('/controllers/CreateQuestionController.js') }}"></script>
-<script src="{{ asset('/controllers/MyMenuController.js') }}"></script>
-<script src="{{ asset('/controllers/QuestionModalController.js') }}"></script>
-<script src="{{ asset('/components/comment/controllers/CommentComponentController.js') }}"></script>
-<script src="{{ asset('/components/question/controllers/QuestionComponentController.js') }}"></script>
-<script src="{{ asset('/components/main-menu/controllers/MainMenuComponentController.js') }}"></script>
-<script src="{{ asset('/models/User.js') }}"></script>
-<script src="{{ asset('/services/QuestionService.js') }}"></script>
-<script src="{{ asset('/services/AnswerRatingService.js') }}"></script>
-<script src="{{ asset('/services/QuestionRatingService.js') }}"></script>
-<script src="{{ asset('/services/AnswerService.js') }}"></script>
-<script src="{{ asset('/services/Logger.js') }}"></script>
+<script src="{{ asset('/build/all.js') }}"></script>
 </body>
 </html>
+

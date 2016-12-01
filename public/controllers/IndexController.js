@@ -16,17 +16,35 @@
 
             this.page = 1;
             this.questions = [];
+            this.dataLoaded = false;
+            this.canLoadMore = false;
 
-            this.getQuestions(this.page);
+            this.getQuestions(true);
         }
 
-        getQuestions(page) {
-            this.QuestionService.get({page : page})
-                .success((data) => this.questions = data);
+        /**
+         *
+         * @param ignore bool - ignore or not canLoadMore parameter
+         */
+        getQuestions(ignore) {
+            if (this.canLoadMore || ignore) {
+                this.canLoadMore = false;
+                this.QuestionService.get({page: this.page})
+                    .success((data) => {
+                        this.questions.push(...data.questions);
+                        this.canLoadMore = data.canLoadMore;
+                        this.dataLoaded = true;
+                    });
+            }
         }
 
         openMenu() {
             this.$mdSidenav('left').toggle();
+        }
+
+        loadMore() {
+            this.page++;
+            this.getQuestions(false);
         }
     }
 
