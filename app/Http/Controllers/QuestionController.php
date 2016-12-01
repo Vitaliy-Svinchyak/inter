@@ -29,7 +29,7 @@ class QuestionController extends Controller
             ->join('hashtags as h', 'hq.hashtag_id', '=', 'h.id')
             ->where('h.text', $type)
             ->take(21)
-            ->orderBy('q.created_at')
+            ->orderBy('q.created_at', 'DESC')
             ->offset($offset)
             ->pluck('q.id');
         if ($questionIds->count() === 21) {
