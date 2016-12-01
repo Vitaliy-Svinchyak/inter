@@ -7,6 +7,7 @@
 
     <title>Inter</title>
 
+    <link rel="stylesheet" href="{{ asset('/css/theme.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
     <link rel="stylesheet prefetch" href="{{ asset('/node_modules/angular-material/angular-material.min.css') }}">
     {{--<link rel="stylesheet prefetch"--}}
