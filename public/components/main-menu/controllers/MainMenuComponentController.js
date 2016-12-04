@@ -52,6 +52,10 @@ class MainMenuComponentController {
                 url: '/my/create-question',
                 text: 'Создать вопрос',
             },
+            {
+                url: '/my/logout',
+                text: 'Выход',
+            },
         ];
         this.detectPage();
     }

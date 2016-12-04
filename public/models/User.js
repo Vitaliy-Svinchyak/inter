@@ -18,6 +18,11 @@
             }
         }
 
+        clearData(){
+            this.data = null;
+            this.$cookies.delete('token');
+        }
+
         getToken() {
             let cookieToken = this.$cookies.get('token');
             if (cookieToken) {

@@ -45,6 +45,11 @@ class AuthManager
         return false;
     }
 
+    public static function logoutUser(int $userId, string $token): bool
+    {
+        return (bool)UserAuth::where('user_id', $userId)->where('token', $token)->delete();
+    }
+
     /**
      * @return string
      */

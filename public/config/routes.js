@@ -33,6 +33,11 @@
                     url: '/my/create-question',
                     templateUrl: 'views/my/create-question.html',
                     controller: 'CreateQuestionController'
+                })
+                .state('exit', {
+                    url: '/my/logout',
+                    //templateUrl: 'views/my/create-question.html',
+                    controller: 'LogoutController'
                 });
 
             $urlRouterProvider.otherwise('/main/php');
