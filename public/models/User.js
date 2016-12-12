@@ -20,7 +20,7 @@
 
         clearData(){
             this.data = null;
-            this.$cookies.delete('token');
+            this.$cookies.remove('token');
         }
 
         getToken() {

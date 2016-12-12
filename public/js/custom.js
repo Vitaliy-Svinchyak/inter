@@ -11,7 +11,6 @@
             let button = document.getElementById('load-more');
             if (button) {
                 button.click();
-                console.log('click');
             }
         }
     });

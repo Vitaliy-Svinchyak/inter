@@ -85,7 +85,7 @@ md-bottom-sheet.md-has-header {
 }
 
 .content {
-    margin-top: 50px;
+    margin-top: 36px;
     padding: 20px;
 }
 
@@ -128,6 +128,20 @@ md-bottom-sheet.md-has-header {
 
 .question-block .md-icon-button.rating-button {
     font-size: 0.6em;
+}
+
+.question-block {
+    transition: all 0.5s linear;
+    animation: 1s showQuestion;
+}
+
+@keyframes showQuestion {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .question-modal-dialog .question-block .md-icon-button.rating-button {
@@ -247,11 +261,23 @@ comment-actions .md-button.md-icon-button {
     width: 45px;
 }
 
+md-toolbar {
+    background-color: white !important;
+    border-bottom: 1px solid #e8e8e8;
+    min-height: 36px !important;
+    height: 36px;
+    color: grey !important;
+}
+
 .header-toolbar {
     display: flex;
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.header-toolbar i {
+    color: grey;
 }
 
 .switch-show-answers {

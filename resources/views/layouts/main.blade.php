@@ -30,6 +30,7 @@
 <script src='http://cdn.jsdelivr.net/g/angular.textangular@1.5.0(textAngular-rangy.min.js+textAngular-sanitize.min.js+textAngular.min.js)'></script>
 {{--<script src="{{ asset('/build/all.js') }}"></script>--}}
 <script src="{{ asset('/js/app.js') }}"></script>
+<script src="{{ asset('/js/custom.js') }}"></script>
 <script src="{{ asset('/config/routes.js') }}"></script>
 <script src="{{ asset('/bootstrap/main.js') }}"></script>
 <script src="{{ asset('/controllers/IndexController.js') }}"></script>

@@ -51,19 +51,21 @@
                     }
                 };
             }])
-        .run(['UserModel', '$state', '$rootScope', '$http',
-            function (UserModel, $state, $rootScope, $http) {
+        .run(['UserModel', '$state', '$rootScope', '$http', '$location',
+            function (UserModel, $state, $rootScope, $http, $location) {
 
                 $rootScope.$on('unauthorized',
                     () => {
                         $state.go('auth');
                     });
 
-                if (!UserModel.getToken()) {
+                if (!UserModel.getToken() && $location.path() != '/ask-for-account') {
                     setTimeout(() => $state.go('auth'), 0);
                 }
-                $http.get('/user').success((data) => {
-                    UserModel.setData(data);
-                });
+                else {
+                    $http.get('/user').success((data) => {
+                        UserModel.setData(data);
+                    });
+                }
             }]);
 })();

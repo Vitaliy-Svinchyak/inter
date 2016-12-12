@@ -33,8 +33,8 @@
         </md-card-title-text>
     </md-card-title>
     <md-card-content ng-if="$ctrl.question.showAnswer  && $ctrl.question.best_answer">
-        <p>
-            {{::$ctrl.question.best_answer.text}}
+        <p ng-bind-html="::$ctrl.question.best_answer.text">
+
         </p>
     </md-card-content>
     <md-card-content ng-if="!$ctrl.question.best_answer">

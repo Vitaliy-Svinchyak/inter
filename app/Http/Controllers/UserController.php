@@ -54,13 +54,14 @@ class UserController
     {
         $userId = Auth::id();
         $token = $request->get('token');
-
-        $result = AuthManager::logoutUser($userId, $token);
-        if (!$result) {
-            $errors = AuthManager::getErrors();
-            return response(json_encode($errors), 400);
+        if ($token) {
+            $result = AuthManager::logoutUser($userId, $token);
+            if (!$result) {
+                $errors = AuthManager::getErrors();
+                return response(json_encode($errors), 400);
+            }
         }
-        return response(AuthManager::getIdAndToken(), 200);
+        return response('', 200);
     }
 
     public function index(Request $request)

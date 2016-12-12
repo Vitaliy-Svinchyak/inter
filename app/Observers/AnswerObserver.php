@@ -16,11 +16,22 @@ class AnswerObserver
     public function validating(Answer $answer)
     {
         if (!$answer->exists) {
-            $answer->text = strip_tags($answer->text, ['ul', 'ol', 'li', 'strong', 'p']);
+            $answer->text = strip_tags($answer->text, $this->generate(['ul', 'ol', 'li', 'strong', 'p']));
             $answer->rating = 0;
             $answer->user_id = Auth::id();
             $answer->code = '';
         }
         return true;
+    }
+
+    private function generate($tags)
+    {
+        $generatedTags = '';
+
+        foreach ($tags as $tag) {
+            $generatedTags .= "<{$tag}>";
+        }
+
+        return $generatedTags;
     }
 }
