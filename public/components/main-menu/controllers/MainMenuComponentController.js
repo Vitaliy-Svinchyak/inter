@@ -62,7 +62,7 @@ class MainMenuComponentController {
 
     needRender(){
         let path = this.$location.path();
-        if (path === '/auth' || path === '/ask-for-account'){
+        if (path === '/auth' || path === '/ask-for-account/'){
             return false;
         }
         return true;

@@ -59,10 +59,10 @@
                         $state.go('auth');
                     });
 
-                if (!UserModel.getToken() && $location.path() != '/ask-for-account') {
+                if (!UserModel.getToken() && $location.path() != '/ask-for-account/') {
                     setTimeout(() => $state.go('auth'), 0);
                 }
-                else {
+                else if ($location.path() != '/ask-for-account/') {
                     $http.get('/user').success((data) => {
                         UserModel.setData(data);
                     });

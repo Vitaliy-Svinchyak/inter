@@ -25,10 +25,11 @@
                             height: window.height,
                             width: window.width,
                         }
-                    }).success((data) => {
-                    this.UserModel.setData(data);
-                    this.$location.url('/main/php');
-                });
+                    })
+                    .success((data) => {
+                        this.UserModel.setData(data);
+                        this.$location.url('/main/php');
+                    });
             }
         }
     }
